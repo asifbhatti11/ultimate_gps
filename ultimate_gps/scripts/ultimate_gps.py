@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 import rospy
 import time
 import board
@@ -18,7 +17,6 @@ def gps():
     pub = rospy.Publisher('NavSatFix', NavSatFix, queue_size=10)
     rospy.init_node('talker', anonymous=True)
     rate = rospy.Rate(10) # 10hz
-
     while not rospy.is_shutdown():
         gps.update()
         current = time.monotonic()
@@ -36,7 +34,6 @@ def gps():
         msg.status.status = gps.fix_quality
         msg.status.service = 1
         pub.publish(msg)
-
 
 if __name__ == '__main__':
     try:
